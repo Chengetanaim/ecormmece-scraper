@@ -1,0 +1,180 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="{% static '/base.css' %}">
+    <link rel="stylesheet" href="{% static '/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static '/font-6/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static '/font-6/css/fontawesome.min.css' %}">
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+</head>
+<body>
+<header class="H1">
+        <image class="logo" src="{% static '/images/huey3.jpg' %}"></image>
+        <form action="{% url 'store:search_results' %}" method="get">
+            <div class="search-nav-bar">
+                <input name="q" type="text" placeholder="Search...">
+                <!-- <a href=""><i class="fas fa-search"></i></a> -->
+            </div>
+        </form>
+
+        <div class="user-location">
+            <i class="fa-solid fa-location-dot"></i>
+            <div class="location-stores">
+                <h5>Midlands State University</h5>
+                <h5>Gweru, Zimbabwe</h5>
+            </div>
+        </div>
+
+        <div class="nav-tab">
+            <div class="sml-search">
+                <a href="{% url 'store:mobile_search' %}"><i class="fas fa-search"></i></a>
+            </div>
+        {% if request.user.is_authenticated %}
+            <div class="user">
+                <a href="#" class="btn">{{ request.user.username }}</a>
+            </div>
+        {% else %}
+            <div class="user">
+                <a href="{% url 'login' %}" class="btn">Sign In</a>
+            </div>
+        {% endif %}
+        </div>
+
+        <div class="sml-nav">
+            <div class="sml-search">
+                <a href="{% url 'store:mobile_search' %}"><i class="fas fa-search"></i></a>
+            </div>
+
+            <div class="sml-nav-2">
+
+                <button class="mobile-toggle"
+                aria-controls="pry-nav" aria-expanded="false">
+                <span class="sr-only">Menu</span>
+            </button>
+
+            <nav>
+                <ul id="pry-nav" data-visible="false" class="pry-nav">
+                    <div class="profile-acc">
+                        <img src="{% static '/images/huey2.jpg' %}" alt="">
+                          {% if request.user.is_authenticated %}
+                            <div class="profile-acc-details">
+                                <h2><span><i class="fas fa-user"></i></span>{{ request.user.username }}</h2>
+                                <a href="{% url 'logout' %}">Log Out</a>
+                            </div>
+                        {% else %}
+                            <div class="profile-acc-details">
+                                <h2><span><i class="fas fa-user"></i></span>Sign In/Up</h2>
+                                <a href="{% url 'login' %}">Log In</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <li><a href="{% url 'store:index' %}"><span><i class="fas fa-home"></i></span> Home</a></li>
+                    <li><a href="{% url 'store:store' %}"><span> <i class="fas fa-store"></i></span> Store</a></li>
+                    <li><a href="{% url 'store:mybookmarks' %}"><span><i class="fas fa-bookmark"></i></span> Bookmarks</a></li>
+
+                    <li><a href="#"><span><i class="fas fa-phone"></i></span> Contact Us</a></li>
+
+                    <div class="user-location user-location-beta">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div class="location-stores">
+                            <h5>Midlands State University</h5>
+                            <h5>Gweru, Zimbabwe</h5>
+                        </div>
+                    </div>
+                </ul>
+            </nav>
+            </div>
+        </div>
+
+    </header>
+
+    <header class="H2">
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="{% url 'store:index' %}">Home</a></li>
+                <li><a href="{% url 'store:store' %}">Store</a></li>
+                <li><a href="{% url 'store:mybookmarks' %}">My Bookmarks</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+     {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">x</a>
+                </li>
+            {% endfor %}
+        </ul>
+     {% endif %}
+{% block content %}
+{% endblock content %}
+     <footer class="featured foot-det">
+        <div class="col">
+            <h1>Pricey!!</h1>
+
+            <div class="follow">
+                <h3>Follow Us</h3>
+                <div class="vendor-tag">
+                    <i style="color: white;" class="fab fa-facebook-f"></i>
+                    <i style="color: white;" class="fab fa-instagram"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <h3>About</h3>
+            <a href="#">About Us</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+
+        <div class="col">
+            <h3>My Account</h3>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">Sign Out</a>
+            {% else %}
+                <a href="{% url 'login' %}">Sign In</a>
+            {% endif %}
+            <a href="#">Contact Us</a>
+        </div>
+
+        <section class="line">
+            <p>Copyright 2023 @Pricey. All rights reserved.</p>
+        </section>
+
+    </footer>
+
+
+    <script src="{% static '/main2.js' %}" defer></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <script type="text/javascript">
+        $('.main-carousel').flickity({
+            cellAlign: 'left',
+            wrapAround:true,
+            freeScroll: true
+        });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+
+    <script>
+         const csrftoken = Cookies.get('csrftoken');
+         document.addEventListener('DOMContentLoaded', (event) => {
+         // DOM loaded
+             {% block domready %}
+             {% endblock %}
+         })
+    </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% extends "store/base.html" %}
+{% load static %}
+{% block title %}My Bookmarks{% endblock %}
+
+{% block content %}
+    <section style="background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url({% static '/images/markus-spiske-BTKF6G-O8fU-unsplash.jpg' %});" class="top-container">
+        <div class="top-container-info">
+            <h5>{{ request.user.username }}.</h5>
+            <h1>My Bookmarks</h1>
+{#            {% with total_images_created=request.user.images_created.count %}#}
+{#                <p>You have bookmarked {{ total_images_created }} image{{ total_images_created|pluralize }}</p>#}
+{#            {% endwith %}#}
+             <p>To bookmark products from this website, click on a specific product and press Bookmark it.</p>
+            <p>Drag the following button to your bookmarks toolbar to bookmark products from other websites → <a href="javascript:{% include "bookmarklet_launcher.js" %}" >Bookmark it</a></p>
+        </div>
+    </section>
+    <section class="product-items">
+        {% for product in products %}
+            <div class="product">
+                <div class="product-content">
+                    <div class="product-img">
+                        <img src="{{ product.image }}" alt="" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-info-top" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                            <h5>{{ product.category }}</h5>
+                        </div>
+
+                        <div class="product-info-bottom" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                            <h2 class="name">{{ product.name|truncatechars:25 }}</h2>
+                            <h2 class="price">{{ product.price }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </section>
+
+    <section class="product-items">
+        {% for product in images %}
+            <div class="product">
+                <div class="product-content">
+                    <div class="product-img">
+                        <img src="{{ product.image.url }}" alt="" onclick="window.location.href='{% url 'store:mybookmark' product.id %}';">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-info-top" onclick="window.location.href='{% url 'store:mybookmark' product.id %}';">
+                            <h5>{{ product.website }}</h5>
+                        </div>
+
+                        <div class="product-info-bottom" onclick="window.location.href='{% url 'store:mybookmark' product.id %}';">
+                            <h2 class="name">{{ product.title|truncatechars:25 }}</h2>
+                            <h2 class="price">{{ product.price }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </section>
+
+
+{#    {% include "store/pagination.html" with page=products %}#}
+{% endblock content %}
+

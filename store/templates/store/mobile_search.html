@@ -1,0 +1,35 @@
+{% extends 'store/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block title %}Search{% endblock title %}
+</head>
+<body>
+    {% block content %}
+    <section class="log-in-form"> 
+        <div class="sign-up sign-up-beta">
+            <header>
+                <h1>Search Here</h1>
+                <p>Enter a keyword to search for the product that you want from our catalogue.</p>
+            </header>
+    
+            <div class="form-outer">
+                <form action="{% url 'store:search_results' %}" method="get">
+                    <div class="sign-page slidepage">
+      
+                    <div class="input-field">
+                        <input name="q" type="text" placeholder="Enter Keyword">
+                    </div>
+                 </div> 
+                </form>
+            </div>
+        </div>
+       </section>
+    {% endblock content %}
+</body>
+</html>

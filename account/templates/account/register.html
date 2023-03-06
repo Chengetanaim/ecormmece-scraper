@@ -1,0 +1,60 @@
+{% extends "store/base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block content %}
+  <section class="log-in-form">
+        <div class="sign-up">
+            <header><h1>Create an account</h1></header>
+
+
+            <div class="form-outer">
+                <form action="{% url 'register' %}" method="post">
+
+
+                    <div class="sign-page slidepage">
+                        {% if form.errors %}
+                        <p class="errorlist">
+                          {{ user_form.errors }}
+                        </p>
+                      {% endif %}
+
+                    <div class="input-field">
+                        <div class="input-label">Username</div>
+                        <input type="text" name="username" maxlength="150" id="id_username" autofocus>
+                    </div>
+
+                    <div class="input-field">
+                        <div class="input-label">First Name</div>
+                        <input type="text" name="first_name" maxlength="150" id="id_first_name">
+                    </div>
+
+                    <div class="input-field">
+                        <div class="input-label">Email address</div>
+                        <input type="email" name="email" maxlength="254" id="id_email">
+                    </div>
+
+                    <div class="input-field">
+                        <div class="input-label">Password</div>
+                        <input type="password" name="password" required id="id_password">
+                    </div>
+
+                    <div class="input-field">
+                        <div class="input-label">Repeat Password</div>
+                        <input type="password" name="password2" required id="id_password2">
+                    </div>
+                    {% csrf_token %}
+
+
+                    <div class="input-field nextBtn">
+                        <button value="submit" style="font-size: 1.1rem; font-weight:600; letter-spacing:1px;" class="btn">Create my account</button>
+                    </div>
+                 </div>
+
+                </form>
+
+            </div>
+        </div>
+
+  </section>
+{% endblock %}

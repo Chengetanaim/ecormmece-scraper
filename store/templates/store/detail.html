@@ -1,0 +1,130 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{product.name }}{% endblock title %}
+
+
+{% block content %}
+    <section id="prodetails" class="featured">
+        <div class= "singleimg">
+            <a href="{{ product.url }}"><img class="big-img" src="{{ product.image }}" width="100%" id="Mainimg" alt=""></a>
+        </div>
+
+        <div class="single-pro-details">
+            <h5>{{ product.website }}</h5>
+
+            <h3>{{ product.name }}</h3>
+
+            <h4 class="price">{{ product.price }}</h4>
+
+            <h4 class="prodet">Details</h4>
+            <p>{{ product.description }}</p>
+
+            <h4 style="margin-top: 3%;">Like what you see?</h4>
+            <div class="vendor-details">
+                {% if request.user.is_authenticated %}
+                    {% with total_likes=product.users_like.count users_like=product.users_like.all %}
+                         <div class="image-info">
+                            <div>
+
+                                <a href="#" data-id="{{ product.id }}" data-action="{% if request.user in users_like %}bookmarked {% else %}bookmark{% endif %}" class="like button">
+                                    {% if request.user not in users_like %}
+                                        Bookmark
+                                    {% else %}
+                                        Bookmarked
+                                    {% endif %}
+                                </a>
+                            </div>
+                         </div>
+                    {% endwith %}
+                {% else %}
+                    <div class="vendor-img">
+                        <a href="{% url 'login' %}"><h2>Login to Bookmark...</h2></a>
+                    </div>
+                {% endif %}
+
+
+            </div>
+        </div>
+
+    </section>
+
+    <div class="topic">
+        <h1>Related Items</h1>
+    </div>
+
+    <section class="product-items">
+        {% for product in products %}
+            <div class="product">
+                <div class="product-content">
+                    <div class="product-img">
+                        <img src="{{ product.image }}" alt="" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                    </div>
+
+                    <div class="product-info">
+                        <div class="product-info-top" onclick="window.location.href='{% url 'store:category' product.category.id %}';">
+                            <h5>{{ product.category }}</h5>
+                        </div>
+
+                        <div class="product-info-bottom" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                            <h2 class="name">{{ product.name }}</h2>
+                            <h2 class="price">{{ product.price }}</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+    </section>
+{% endblock content %}
+
+
+    
+
+{% block domready %}
+      const url = '{% url "store:like" %}';
+      var options = {
+        method: 'POST',
+        headers: {'X-CSRFToken': csrftoken},
+        mode: 'same-origin'
+      }
+
+
+      document.querySelector('a.like')
+              .addEventListener('click', function(e){
+        e.preventDefault();
+        var likeButton = this;
+
+        // add request body
+        var formData = new FormData();
+        formData.append('id', likeButton.dataset.id);
+        formData.append('action', likeButton.dataset.action);
+        options['body'] = formData;
+
+        console.log(csrftoken);
+        // send HTTP request
+        fetch(url, options)
+        .then(response => response.json())
+        .then(data => {
+          if (data['status'] === 'ok')
+          {
+
+            var previousAction = likeButton.dataset.action;
+
+            // toggle button text and data-action
+            var action = previousAction === 'bookmark' ? 'bookmarked' : 'bookmark';
+            likeButton.dataset.action = action;
+            likeButton.innerHTML = action;
+
+            // update like count
+            console.log('Updating like count...');
+            var likeCount = document.querySelector('span.count .total');
+            var totalLikes = parseInt(likeCount.innerHTML);
+            likeCount.innerHTML = previousAction === 'like' ? totalLikes + 1 : totalLikes - 1;
+          } else {
+                console.log(data);
+            }
+
+        })
+      });
+{% endblock %}

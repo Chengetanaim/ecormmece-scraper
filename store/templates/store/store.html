@@ -1,0 +1,87 @@
+{% extends 'store/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}Store{% endblock title %}
+</head>
+<body>
+    {% block content %}
+        <section  style="background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url({% static '/images/hlp3.jpg' %});" class="top-container">
+            <div class="top-container-info">
+                <h5>Products.</h5>
+                <h1>Store Gallery</h1>
+                <p>Check out our latest gadegts<br>at accessible prices.</p>
+            </div>
+        </section>
+
+        <section class="product-line">
+            
+            <div class="product-categories">
+                {% for category in categories %}
+                    <div style="background-image:linear-gradient(rgba(0, 0, 0, 0.527),rgba(0, 0, 0, 0.5)), url({{category.image.url}});" class="cat-banter">
+                        <h4>{{ category.name }}</h4>
+                        <p>{{ category.description }}</p>
+                        <a href="{% url 'store:category' category.id %}" class="btn-cat">Shop Now</a>
+                    </div>
+                {% endfor %}
+
+            </div>
+
+
+            <div class="other-items other-items-beta">
+                <div class="product-items beta">
+                    {% for product in products %}
+                        <div class="product">
+                            <div class="product-content">
+                                <div class="product-img">
+                                    <img src="{{ product.image }}" alt="" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                                </div>
+                
+                                <div class="product-info">
+                                    <div class="product-info-top" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                                        <h5>{{ product.category }}</h5>
+                                    </div>
+                
+                                    <div class="product-info-bottom" onclick="window.location.href='{% url 'store:detail' product.id %}';">
+                                        <h2 class="name">{{ product.name }}</h2>
+                                        <h2 class="price">{{ product.price }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+            
+            
+
+               
+            
+                
+        
+    
+                </div>
+                
+            </div>
+        </section>
+        {% include "store/pagination.html" with page=products %}
+
+         <section class="banner">
+
+             <div class="banner-info">
+                <h1>Introducing Bookmarking</h1>
+                <p>Save multiple products on the go...</p>
+                <a href="{% url 'store:mybookmarks' %}" class="btn">Bookmark Now</a>
+            </div>
+
+        </section>
+
+
+        
+ 
+  
+    {% endblock content %}
+</body>
+</html>

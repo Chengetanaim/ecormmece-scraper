@@ -1,0 +1,30 @@
+{% extends "store/base.html" %}
+{% block title %}Bookmark an image{% endblock %}
+{% block content %}
+
+
+    <section class="log-in-form">
+
+        <div class="sign-up">
+            <header><h1>Bookmark</h1></header>
+
+
+            <div class="form-outer">
+                <form method="post">
+                    <div class="sign-page slidepage">
+
+
+                    {{ form.as_p }}
+                    {% csrf_token %}
+
+                    <img src="{{ request.GET.url }}" class="image-preview">
+                    <div class="input-field nextBtn">
+                        <button style="font-size: 1.1rem; font-weight:600; letter-spacing:1px;" class="btn">Bookmark it</button>
+                    </div>
+                 </div>
+
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

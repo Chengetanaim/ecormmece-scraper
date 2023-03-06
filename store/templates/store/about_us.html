@@ -1,0 +1,73 @@
+{% extends 'store/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    {% block title %}About Us{% endblock title %}
+{#    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">#}
+{#    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&amp;display=swap">#}
+{#    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">#}
+{#    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">#}
+{#    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">#}
+{#    <link rel="stylesheet" href="assets/css/Animated-Pretty-Product-List-v12.css">#}
+{#    <link rel="stylesheet" href="assets/css/Article-Clean.css">#}
+{#    <link rel="stylesheet" href="assets/css/Features-Clean.css">#}
+{#    <link rel="stylesheet" href="assets/css/Footer-Basic.css">#}
+{#    <link rel="stylesheet" href="assets/css/Footer-Dark.css">#}
+{#    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">#}
+{#    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">#}
+{#    <link rel="stylesheet" href="assets/css/Navigation-with-Search.css">#}
+{#    <link rel="stylesheet" href="assets/css/styles.css">#}
+</head>
+{% block content %}
+
+<body style="margin-bottom: 25px;">
+
+
+    <div>
+        <div class="container">
+            <section class="article-clean">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+                            <div class="intro">
+                                <h1 class="text-center">MIDLANDS STATE UNIVERSITY LEVEL 2.2 DATA SCIENCE PROJECT - PRICE COMPARISON WEBSITE</h1>
+                                <p class="text-center"><span class="by">by</span> <a href="#">CHE, RODNEY, TRIBUTE, KELLZ, NATASHA</a><span class="date">JAN 3RD, 2023</span></p><img class="img-fluid" src="{% static '/assets/img/desk.jpg' %}">
+                            </div>
+                            <div class="text">
+                                <p><br>Every shopper looks for the best deals &amp; discounts before buying any product. Nowadays before purchasing anything the buyers do some online research of the products on the internet. One of the major factors which lead to purchasing of any product is cost or pricing. The buyers tend to compare prices before purchasing any product&nbsp; .But since it is very difficult to visit each &amp; every website for price comparison, there needs to be a solution to automate this process.&nbsp;<br></p>
+                                <p><br>The Price comparison website project proposed here gathers information on electronics product prices from various websites &amp; presents it to the users. The users can then choose to buy from the best options available. Even Ecommerce traders can use this price comparison website to study their competitors and form new strategies accordingly to attract new customers &amp; stay ahead of their competitors.&nbsp; This price comparison website for electronics products will help to compare the price from various e-commerce websites, This Price comparison site is extremely helpful for frequent online shoppers to check prices on different online stores in one place.&nbsp; This system will show you the product prices from different retailers to show you where to buy the product at affordable price!<br><br></p>
+                                <h2>TECHNOLOGY USED</h2>
+                                <p>This project was created as a final year project at Midlands State University.&nbsp; We used web scraping tools in Python with the help of the BeautifulSoup4 Library. This was to get all the data from websites including the names and prices of the products.</p>
+                                <figure class="figure d-block"><img class="figure-img" src="{% static '/assets/img/beach.jpg' %}">
+                                    <figcaption class="figure-caption">TECHNOLOGY!!</figcaption>
+                                </figure>
+                                <p>We then used the Django framework in Python to store the data in the database and later on retrieve it in order to display it in our application.&nbsp; Lastly, we used HTML, CSS and Javascript to display all the information in a neat and consistent format.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+{#    <footer class="bg-primary footer-basic">#}
+{#        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>#}
+{#        <ul class="list-inline">#}
+{#            <li class="list-inline-item"><a href="#">Home</a></li>#}
+{#            <li class="list-inline-item"><a href="#">Services</a></li>#}
+{#            <li class="list-inline-item"><a href="#">About</a></li>#}
+{#            <li class="list-inline-item"><a href="#">Terms</a></li>#}
+{#            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>#}
+{#        </ul>#}
+{#        <p class="copyright">PRICEY!! © 2023</p>#}
+{#    </footer>#}
+{#    <script src="assets/bootstrap/js/bootstrap.min.js"></script>#}
+{#    <script src="assets/js/bs-init.js"></script>#}
+{#    <script src="assets/js/Animated-Pretty-Product-List-v12.js"></script>#}
+</body>
+{% endblock content %}
+
+</html>

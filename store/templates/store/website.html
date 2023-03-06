@@ -1,0 +1,118 @@
+{% extends 'store/base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}{{ website.name }}{% endblock title %}
+</head>
+{% block content %}
+
+<body>
+
+ <div>
+        <h1 class="text-center" style="margin-bottom: 25px;margin-top: 25px;">{{ website.name }}</h1>
+        <div class="container">
+            <div class="row product-list dev">
+                {% for product in products %}
+                    <div class="col-sm-6 col-md-4 product-item animation-element slide-top-left">
+                        <div class="product-container">
+                            <div class="row">
+                                <div class="col-md-12"><a class="product-image" href="{{ product.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ product.image }}"></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <h2><a href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.name }}</a></h2>
+                                </div>
+                                <div class="col-4"><a class="small-text" href="{% url 'store:website' product.website.id %}">{{ product.website }} </a></div>
+                            </div>
+                            <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.name }}</a></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="product-description">{{ product.description }} </p>
+                                    <div class="row">
+                                        <div class="col-6"><button class="btn btn-light" type="button">Visit Now!</button></div>
+                                        <div class="col-6">
+                                            <p class="product-price">{{ product.price }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for product in products_random %}
+                    <div class="col-sm-6 col-md-4 product-item animation-element slide-rotate-clockwise">
+                        <div class="product-container">
+                            <div class="row">
+                                <div class="col-md-12"><a class="product-image" href="{{ product.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ product.image }}"></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <h2><a href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.name }}</a></h2>
+                                </div>
+                                <div class="col-4"><a class="small-text" href="{% url 'store:website' product.website.id %}">{{ product.website }} </a></div>
+                            </div>
+                            <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.name }}</a></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="product-description">{{ product.description }} </p>
+                                    <div class="row">
+                                        <div class="col-6"><button class="btn btn-light" type="button">Visit Now!</button></div>
+                                        <div class="col-6">
+                                            <p class="product-price">{{ product.price }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                {% for product in products_random2 %}
+                    <div class="col-sm-6 col-md-4 product-item animation-element slide-top-right">
+                        <div class="product-container">
+                            <div class="row">
+                                <div class="col-md-12"><a class="product-image" href="{{ product.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ product.image }}"></a></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8">
+                                    <h2><a href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.name }}</a></h2>
+                                </div>
+                                <div class="col-4"><a class="small-text" href="{% url 'store:website' product.website.id %}">{{ product.website }} </a></div>
+                            </div>
+                            <div class="product-rating"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half"></i><a class="small-text" href="{{ product.url }}" target="_blank" rel="noopener noreferrer">{{ product.name }}</a></div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="product-description">{{ product.description }} </p>
+                                    <div class="row">
+                                        <div class="col-6"><button class="btn btn-light" type="button">Visit Now!</button></div>
+                                        <div class="col-6">
+                                            <p class="product-price">{{ product.price }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+{#            <nav>#}
+{#                <ul class="pagination">#}
+{#                    <li class="page-item"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>#}
+{#                    <li class="page-item"><a class="page-link" href="#">1</a></li>#}
+{#                    <li class="page-item"><a class="page-link" href="#">2</a></li>#}
+{#                    <li class="page-item"><a class="page-link" href="#">3</a></li>#}
+{#                    <li class="page-item"><a class="page-link" href="#">4</a></li>#}
+{#                    <li class="page-item"><a class="page-link" href="#">5</a></li>#}
+{#                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>#}
+{#                </ul>#}
+{#            </nav>#}
+                {% include "store/pagination.html" with page=products %}
+        </div>
+    </div>
+
+
+
+</body>
+{% endblock content %}
+</html>

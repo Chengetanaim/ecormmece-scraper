@@ -1,0 +1,31 @@
+{% extends 'store/base.html' %}
+{% load static %}
+
+{% block title %}{{ image.title }}{% endblock title %}
+
+
+{% block content %}
+    <section id="prodetails" class="featured">
+        <div class= "singleimg">
+            <a href="{{ image.url }}"><img class="big-img" src="{{ image.image.url }}" width="100%" id="Mainimg" alt=""></a>
+        </div>
+
+        <div class="single-pro-details">
+            <h5>{{ image.website }}</h5>
+
+            <h3 >{{ image.title }}</h3>
+
+            <h4 class="price">{{ image.price }}</h4>
+
+            <h4 class="prodet">Details</h4>
+            <p>{{ image.description }}</p>
+
+
+
+        </div>
+
+    </section>
+
+
+
+{% endblock content %}
